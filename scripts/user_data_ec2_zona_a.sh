@@ -18,7 +18,6 @@ sudo mkdir -p /usr/local/lib/docker/cli-plugins
 sudo curl -SL https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
 sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
-
 #Adicionar swap
 sudo dd if=/dev/zero of=/swapfile bs=128M count=32
 sudo chmod 600 /swapfile
@@ -26,7 +25,11 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 
-
 #Instalar node e npm
 curl -fsSL https://rpm.nodesource.com/setup_21.x | sudo bash -
 sudo yum install -y nodejs
+
+#Instalando pip e eb
+sudo yum install python3-pip -y
+pip3 install awsebcli --upgrade --user
+sudo ln -s /root/.local/bin/eb /usr/bin/eb
